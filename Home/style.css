@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    /* background-image: url(arcadeBG.png);
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-color: rgb(20, 20, 20);
+    font-family: "Permanent Marker", cursive;
+}
+
+header {
+    text-align: center;
+    color: white;
+}
+
+.page-wrapper {
+    display: flex;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+.head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.642);
+    text-align: center;
+    color: white;
+    font-size: 13px;
+}
+
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100dvw;
+    border: 2px solid seagreen;
+}
+
+.game-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    border: 2px solid red;
+    padding: 10px;
+    margin: 250px 0;
+    gap: 15px;
+    width: 75dvw;
+    color: white;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid rgba(141, 10, 108, 0.815);
+    background-color: rgba(0, 0, 0, 0.438);
+}
+
+.game img {
+    border: 2px solid blue;
+    width: 200px;
+    height: 200px;
+}
+.game h3 {
+    border: 2px solid blue;
+    width: 200px;
+    height: 200px;
+}
+
+footer {
+    height: 100px;
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+}

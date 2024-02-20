@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.head, a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: 100dvh;
+    margin: 0;
+    background-color: rgb(20, 20, 20);
+    font-family: "Permanent Marker", cursive;
+}
+
+.page-wrapper {
+    display: flex;
+}
+
+.head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    background-color: rgba(0, 0, 255, 0.642);
+    text-align: center;
+    color: white;
+    font-size: 13px;
+}
+
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 99dvh;
+    width: 90dvw;
+}
+
+
+header {
+    text-align: center;
+}
+
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#game-screen {
+    background-color: rgb(20, 20, 20);
+    border: 3px solid white;
+}
+
+
+#score {
+    color: aliceblue;
+    font-size: 50px;
+    font-family: "Permanent Marker", cursive;
+}
+
+#reset-btn {
+    font-family: "Permanent Marker", cursive;
+    font-size: 22px;
+    width: 100px;
+    height: 50px;
+    border: 4px solid;
+    border-radius: 15px;
+    cursor: pointer;
+    color: rgb(20, 20, 20);
+}
