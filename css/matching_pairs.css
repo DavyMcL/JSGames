@@ -125,7 +125,7 @@ h2 {
 }
 
 .item::after {
-    opacity: 0.5;
+    /* opacity: 0.5; */
     font-family: monospace;
     content: "?";
     text-align: center;
