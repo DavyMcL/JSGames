@@ -1,33 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="worm.css">
 </head>
+
 <body>
-    <head>
-        <div class="page-wrapper">
-            <div class="head">
-                <h1>Marisa's Pleasure Pixels</h1>
-                <a href="../Home/home.html">Return</a>
-            </div>
-    </head>
-    <div class="game-wrapper">
-    <div id="game-container">
-        <head>
-            <div class="score-tracker">
-                <h4>Personal Best</h4>
-            </div>
-        </head>
-        <canvas id="game-screen" width="400" height="400"></canvas>
-        <div id="score">0</div>
-        
-        <button id="reset-btn">Play</button>
-       
+
+    <audio id="movement" src="../movement_sound.mp3"></audio>
+    <audio id="eating" src="../eating_sound.mp3"></audio>
+    <audio id="gameOver" src="../game-over.mp3"></audio>
+    <div class="home">
+        <a href="../home.html"><i class="fas fa-home fa-2x"></i></a>
     </div>
-</div>
+    <div class="title">
+        <h1>JavaScript</h1>
+        <p class="description">
+            Welcome to Snake! Control your serpent with the WASD keys. Collect food to grow longer and faster, but avoid
+            colliding with the borders or yourself.
+        </p>
+    </div>
+
+    <div class="game-wrapper">
+        <div class="counter">
+            <div class="score-counter">
+                <p>Score:</p>
+                <div id="score">0</div>
+            </div>
+            <div class="personal-best-counter">
+                <p>Personal Best:</p>
+                <div class="personal-best"></div>
+            </div>
+        </div>
+        <div id="game-container">
+            <canvas id="game-screen" width="400" height="400"></canvas>
+            <button id="play">PLAY</button>
+            <div id="gameOver">Game Over!</div>
+            <button id="reset" onclick="window.location.reload()">RESET GAME</button>
+        </div>
+    </div>
+
+    </div>
+    <div class="games">
+        <div class="game">
+            <a href="../matching_pairs.html">
+            <img src="https://via.placeholder.com/376x226" alt="Matching Pairs">
+            <h5>
+                Game
+            </h5>
+        </a>
+        </div>
+    </div>
     <script src="worm.js" defer></script>
 </body>
+
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Pairs Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="matching_pairs.css">
+</head>
+
+<body>
+
+    <audio id="match" src="match_sound.mp3"></audio>
+    <audio id="cardFlip" src="flipcard.mp3"></audio>
+    <audio id="victory" src="winbanjo.mp3"></audio>
+    <div class="home">
+        <a href="../home.html"><i class="fas fa-home fa-2x"></i></a>
+    </div>
+    <div class="title">
+        <h2>
+            MATCHING PAIRS
+        </h2>
+        <p class="description">
+            Match pairs of cards by clicking to reveal their faces, aiming to find all matches. Test your memory and
+            concentration to win!
+        </p>
+    </div>
+
+    <div class="game-container">
+       <div class="counter">
+            <div class="attempts-counter">
+                <p>Attempts:</p>
+                <div class="attempts">0</div>
+            </div>
+            <div class="personal-best-counter">
+                <p>Personal Best:</p>
+                <div class="personal-best"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="game"></div>
+        </div>
+        <div id="winMessage">You win!</div>
+        <button class="reset" onclick="window.location.reload()">RESET GAME</button>
+    </div>
+
+
+    <script src="matching_pairs.js" defer></script>
+</body>
+
+</html>

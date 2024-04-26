@@ -1,16 +1,19 @@
 const gameScreen = document.querySelector("#game-screen");
 const context = gameScreen.getContext("2d");
 
-const reset = document.getElementById("reset-btn");
+const play = document.getElementById("play");
 const block = 20;
 let player = [{x: block * 2, y: block * 3}];
 let food = {x: block * 5, y: block * 7};
 let directionX = block;
 let directionY = 0;
 let score = 0;
-
+let personalBest = parseInt(localStorage.getItem("personalBest")) || 0;
 let speed = 7;
 
+const eatingAudio = document.getElementById("eating");
+const movementAudio = document.getElementById("movement");
+const gameOverAudio = document.getElementById("gameOver");
 const scoreDisplay = document.getElementById("score");
 
 
@@ -32,9 +35,25 @@ function drawFood() {
 }
 
 function generateFoodPosition() {
-    food.x = Math.floor(Math.random() * (gameScreen.width / block)) * block;
-    food.y = Math.floor(Math.random() * (gameScreen.height / block)) * block;
+    let validPosition = false;
+    
+    
+    while (!validPosition) {
+        let attempt = 0;
+        const x = Math.floor(Math.random() * (gameScreen.width / block)) * block;
+        const y = Math.floor(Math.random() * (gameScreen.height / block)) * block;
+        attempt ++
+        console.log("attempt " + attempt);
+        
+        if (!player.some(segment => segment.x === x && segment.y === y)) {
+            food.x = x;
+            food.y = y;
+            validPosition = true;
+            attempt = 0;
+        }
+    }
 }
+
 
 function draw() {
     context.clearRect(0, 0, gameScreen.width, gameScreen.height);
@@ -42,37 +61,54 @@ function draw() {
     drawFood(); 
 }
 
+function playEatingAudio() {
+    eatingAudio.volume = 0.15;
+    eatingAudio.play();
+}
+
+function playMovementAudio() {
+    movementAudio.volume = 0.15;
+    movementAudio.play();
+}
+
+function playGameOverAudio() {
+    gameOverAudio.volume = 0.15;
+    gameOverAudio.play();
+}
+
 function movePlayer() {
     const head = { x: player[0].x + directionX, y: player[0].y + directionY };
-    
-    
+
+    // Collision with own body
     if (player.some(segment => segment.x === head.x && segment.y === head.y)) {
         gameOver();
-        gameStarted = false;
         return;
     }
     
+    // Collision with walls
+    if (head.x < 0 || head.x >= gameScreen.width || head.y < 0 || head.y >= gameScreen.height) {
+        gameOver();
+        return;
+    }
+    playMovementAudio();
     player.unshift(head);
     
-    if (head.x < 0 || head.x > gameScreen.width || head.y < -block || head.y > gameScreen.height) {
-        gameOver();
-        gameStarted = false;
-        console.log(head.x, head.y);
-        return;
-    }
-    
 
+    // Collision with food
     if (head.x === food.x && head.y === food.y) {
+        playEatingAudio();
         generateFoodPosition();
         score++;
         scoreDisplay.textContent = score;
         if (score % 3 === 0) {
-            speed++;
+            updateSpeed(speed + 1);
         }
     } else {
         player.pop();
     }
 }
+
+
 
 
 
@@ -92,49 +128,49 @@ document.addEventListener("keydown", e => {
     }
 });
 
+
+
+
 function gameOver() {
-    context.clearRect(0, 0, gameScreen.width, gameScreen.height);
-
-    context.fillStyle = "white";
-    context.font = "30px Permanent Marker";
-    context.fillText("Game Over", 50, 100);
-    context.fillText("Your Score " + score, 50, 150);
-   reset.style.display = "block"
-
- 
-    clearTimeout();
+    clearInterval(gameInterval);
+    console.log("Game interval cleared");
+    playGameOverAudio();
+    if (score > personalBest) {
+        personalBest = score;
+        localStorage.setItem("personalBest", personalBest);
+    }
 
 
-    // reset.addEventListener("click", () => {
-    //   start();
-    //   console.log("Button clicked");
-    // })
+    document.querySelector(".personal-best").textContent = personalBest;
+    document.getElementById('gameOver').style.display = 'block';
+    document.getElementById('reset').style.display = 'block';
 }
 
-let gameStarted = false;
 
-// document.addEventListener("keydown", e => {
-//     if (!gameStarted && (e.key === "a" || e.key === "d" || e.key === "w" || e.key === "s")) {
-//         generateFoodPosition();
-//         start();
-//         gameStarted = true; 
-//     }
-// });
-
-reset.addEventListener("click", () => {
+play.addEventListener("click", () => {
     start();
-    console.log("Reset");
-    reset.style.display = "none";
+    console.log("Game started");
+    play.style.display = "none";
 });  
 
 
 function start() {
     draw();
-    movePlayer(); 
-    gameInterval = setTimeout(start, 1500/speed);
-    console.log(1000/speed);
-    // setInterval(() => {
-    //     movePlayer();
-    //     draw(); 
-    // }, speed);
+    gameInterval = setInterval(() => {
+        movePlayer();
+        draw();
+         
+    }, 1500 / speed);
+    console.log(speed);
 }
+
+function updateSpeed(newSpeed) {
+    speed = newSpeed;
+    clearInterval(gameInterval); 
+    start(); 
+}
+
+function updatePersonalBestDisplay() {
+    document.querySelector(".personal-best").textContent = personalBest;
+}
+updatePersonalBestDisplay();
