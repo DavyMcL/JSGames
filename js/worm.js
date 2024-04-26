@@ -8,7 +8,8 @@ let food = {x: block * 5, y: block * 7};
 let directionX = block;
 let directionY = 0;
 let score = 0;
-let personalBest = parseInt(localStorage.getItem("personalBest")) || 0;
+let personalBestWorm = parseInt(localStorage.getItem("personalBestWorm")) || 0;
+
 let speed = 7;
 
 const eatingAudio = document.getElementById("eating");
@@ -135,16 +136,17 @@ function gameOver() {
     clearInterval(gameInterval);
     console.log("Game interval cleared");
     playGameOverAudio();
-    if (score > personalBest) {
-        personalBest = score;
-        localStorage.setItem("personalBest", personalBest);
+    if (score > personalBestWorm) {
+        personalBestWorm = score;
+        localStorage.setItem("personalBestWorm", personalBestWorm);
     }
+    
 
-
-    document.querySelector(".personal-best").textContent = personalBest;
+    document.querySelector(".personal-best").textContent = personalBestWorm;
     document.getElementById('gameOver').style.display = 'block';
     document.getElementById('reset').style.display = 'block';
 }
+
 
 
 play.addEventListener("click", () => {
@@ -171,6 +173,6 @@ function updateSpeed(newSpeed) {
 }
 
 function updatePersonalBestDisplay() {
-    document.querySelector(".personal-best").textContent = personalBest;
+    document.querySelector(".personal-best").textContent = personalBestWorm;
 }
 updatePersonalBestDisplay();

@@ -2,12 +2,13 @@ const emojis = ["🎶", "🎶", "👻", "👻", "🐔", "🐔", "🦊", "🦊", 
     "🐈‍⬛", "🐈‍⬛", "🥚", "🥚", "⛄", "⛄"];
 var shuffle_cards = emojis.sort(() => (Math.random() > .5) ? 2 : -1);
 var attempts = 0;
-var personalBest = parseInt(localStorage.getItem('personalBest'));
-if (isNaN(personalBest)) {
-    personalBest = 0;
+let personalBestMatch = parseInt(localStorage.getItem("personalBestMatch")) || 0;
+
+if (isNaN(personalBestMatch)) {
+    personalBestMatch = 0;
 }
-console.log("Personal Best from localStorage:", personalBest);
-document.querySelector('.personal-best').textContent = personalBest;
+console.log("Personal Best from localStorage:", personalBestMatch);
+document.querySelector('.personal-best-match').textContent = personalBestMatch;
 const matchAudio = document.getElementById("match");
 const cardFlipAudio = document.getElementById("cardFlip");
 const victoryAudio = document.getElementById("victory");
@@ -50,7 +51,7 @@ for (i = 0; i < emojis.length; i++) {
                     if (document.querySelectorAll('.match').length == emojis.length) {
                         document.getElementById('winMessage').style.display = 'block';
                         playVictoryAudio();
-                        updatePersonalBest();
+                        updatePersonalBestMatch();
                     }
                 } else {
                     document.querySelectorAll('.reveal')[1].classList.remove('reveal');
@@ -69,11 +70,11 @@ function updateAttemptsCounter() {
     document.querySelector('.attempts').textContent = attempts;
 }
 
-function updatePersonalBest() {
-    if (attempts < personalBest || personalBest === 0) {
-        personalBest = attempts;
-        localStorage.setItem('personalBest', personalBest);
-        document.querySelector('.personal-best').textContent = personalBest;
-        console.log("Personal Best updated:", personalBest);
+function updatePersonalBestMatch() {
+    if (attempts < personalBestMatch || personalBestMatch === 0) {
+        personalBestMatch = attempts;
+        localStorage.setItem('personalBestMatch', personalBestMatch);
+        document.querySelector('.personal-best-match').textContent = personalBestMatch;
     }
+    
 }
