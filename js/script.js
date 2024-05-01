@@ -12,9 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function filterGames(category) {
         games.forEach(game => {
             if (category === "all" || game.getAttribute("data-category") === category) {
-                game.classList.remove("hidden"); 
+                game.classList.remove("hidden");
             } else {
-                game.classList.add("hidden"); 
+                game.classList.add("hidden");
             }
         });
     }

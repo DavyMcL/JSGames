@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Permanent Marker", cursive;
+
 }
+
 body {
     position: relative;
     background-color: #171A1F;
-    font-family: "Permanent Marker", cursive;
 }
 
 header {
@@ -22,8 +24,8 @@ header {
 a {
     color: white;
     text-decoration: none;
+    font-size: 1.5rem;
 }
-
 
 
 .head {
@@ -35,12 +37,13 @@ a {
     padding: 10px;
     text-align: center;
     color: white;
-    font-size: 13px;
+    font-size: 1.5rem;
 }
 
 .head p {
     width: 30%;
     padding-top: 25px;
+    font-size: 1rem;
 }
 .game-wrapper {
     display: flex;
@@ -94,21 +97,40 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
     padding: 15px; 
     transition: opacity 0.3s ease;
+}
+
+.game h3 {
+    margin-top: 10px;
+    color: white;
+    font-size: 1.5rem;
 }
 
 .game.hidden {
     opacity: 0;
 }
 
-.game img {
+/* .game img {
     width: 100%; 
     max-width: 100%; 
     height: auto; 
     border-radius: 8px; 
     border: 1px solid #DEE1E6;
+} */
+
+.game .game-image {
+    width: 100%; 
+    height: auto; 
+    max-height: 100%; 
+    min-height: 400px; 
+    border-radius: 8px; 
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.game .game-image:hover {
+    border-color:white;
 }
 
 .game h3 {

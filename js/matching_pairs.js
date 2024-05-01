@@ -1,12 +1,13 @@
 const emojis = ["🎶", "🎶", "👻", "👻", "🐔", "🐔", "🦊", "🦊", "😽", "😽",
     "🐈‍⬛", "🐈‍⬛", "🥚", "🥚", "⛄", "⛄"];
-var shuffle_cards = emojis.sort(() => (Math.random() > .5) ? 2 : -1);
-var attempts = 0;
+let shuffle_cards = emojis.sort(() => (Math.random() > .5) ? 2 : -1);
+let attempts = 0;
 let personalBestMatch = parseInt(localStorage.getItem("personalBestMatch")) || 0;
 
 if (isNaN(personalBestMatch)) {
     personalBestMatch = 0;
 }
+
 console.log("Personal Best from localStorage:", personalBestMatch);
 document.querySelector('.personal-best-match').textContent = personalBestMatch;
 const matchAudio = document.getElementById("match");
@@ -28,7 +29,6 @@ function playVictoryAudio() {
     victoryAudio.volume = 0.15;
     victoryAudio.play();
 }
- 
 
 for (i = 0; i < emojis.length; i++) {
     let card = document.createElement('div');
@@ -42,7 +42,6 @@ for (i = 0; i < emojis.length; i++) {
                 if (document.querySelectorAll('.reveal')[0].innerHTML == document.querySelectorAll('.reveal')[1].innerHTML) {
                     document.querySelectorAll('.reveal')[0].classList.add('match');
                     document.querySelectorAll('.reveal')[1].classList.add('match');
-
                     document.querySelectorAll('.reveal')[1].classList.remove('reveal');
                     document.querySelectorAll('.reveal')[0].classList.remove('reveal');
                     playMatchAudio();
@@ -62,7 +61,6 @@ for (i = 0; i < emojis.length; i++) {
             }
         }, 800)
     }
-
     document.querySelector('.game').appendChild(card);
 }
 
@@ -76,5 +74,4 @@ function updatePersonalBestMatch() {
         localStorage.setItem('personalBestMatch', personalBestMatch);
         document.querySelector('.personal-best-match').textContent = personalBestMatch;
     }
-    
 }

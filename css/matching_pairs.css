@@ -2,13 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Permanent Marker", cursive;
 }
 
 body {
-    
     min-height: 100vh;
     background: #171A1F;
-    font-family: "Permanent Marker", cursive;
 }
 
 .home,
@@ -26,11 +25,15 @@ a {
     background: #8353E2;
 }
 
-
 .title {
     color: white;
     text-align: center;
     margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.title p {
+    font-size: 1rem;
 }
 
 .title,
@@ -39,8 +42,8 @@ h2 {
 }
 
 .description {
-    max-width: 600px; 
-    margin: 0 auto; 
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .counter {
@@ -50,11 +53,13 @@ h2 {
     width: 650px;
 }
 
-.attempts-counter, .personal-best-counter {
+.attempts-counter,
+.personal-best-counter {
     display: flex;
-    
 }
-.counter p, .personal-best p {
+
+.counter p,
+.personal-best p {
     margin-right: 10px;
 }
 
@@ -126,7 +131,6 @@ h2 {
 
 .item::after {
     /* opacity: 0.5; */
-    font-family: monospace;
     content: "?";
     text-align: center;
     line-height: 100%;
@@ -150,24 +154,51 @@ h2 {
     font-size: 24px;
 }
 
+.games {
+    display: flex;
+    justify-content: center;
+    margin-top: 75px;
+}
+
+.game-select {
+    margin: 0 20px;
+    margin-bottom: 50px;
+}
+
+.game-select img {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    max-height: 100%;
+    min-height: 300px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.game-select img:hover {
+    border-color: white;
+}
+
+.game-select h5 {
+    font-size: 1.5rem;
+    color: white;
+}
+
 @media screen and (max-width: 1280px) {
-    body {
-        margin-bottom: 100px;
-    }
     .counter {
         width: 450px;
     }
 
     .game-container {
         min-height: 50vh;
-        
     }
 
     .game {
         width: 400px;
         height: 400px;
     }
-    
+
     .item {
         position: relative;
         height: 90px;

@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matching Pairs Game</title>
+    <link rel="icon" href="assests/images/JS.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/matching_pairs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <audio id="match" src="assests/audio/match_sound.mp3"></audio>
     <audio id="cardFlip" src="assests/audio/flipcard.mp3"></audio>
     <audio id="victory" src="assests/audio/winbanjo.mp3"></audio>
@@ -26,9 +29,8 @@
             concentration to win!
         </p>
     </div>
-
     <div class="game-container">
-       <div class="counter">
+        <div class="counter">
             <div class="attempts-counter">
                 <p>Attempts:</p>
                 <div class="attempts">0</div>
@@ -41,11 +43,19 @@
         <div class="container">
             <div class="game"></div>
         </div>
-        <div id="winMessage">You win!</div>
+        <div id="winMessage">Reset to play Again!</div>
         <button class="reset" onclick="window.location.reload()">RESET GAME</button>
     </div>
-
-
+    <div class="games">
+        <div class="game-select">
+            <a href="worm.html">
+                <img src="assests/images/worm.png" alt="Matching Pairs">
+                <h5>
+                    Worm
+                </h5>
+            </a>
+        </div>
+    </div>
     <script src="js/matching_pairs.js" defer></script>
 </body>
 

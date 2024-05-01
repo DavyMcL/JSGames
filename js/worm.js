@@ -1,15 +1,15 @@
 const gameScreen = document.querySelector("#game-screen");
 const context = gameScreen.getContext("2d");
 
+//Setting up initial game variables
 const play = document.getElementById("play");
 const block = 20;
-let player = [{x: block * 2, y: block * 3}];
-let food = {x: block * 5, y: block * 7};
+let player = [{ x: block * 2, y: block * 3 }];
+let food = { x: block * 5, y: block * 7 };
 let directionX = block;
 let directionY = 0;
 let score = 0;
 let personalBestWorm = parseInt(localStorage.getItem("personalBestWorm")) || 0;
-
 let speed = 7;
 
 const eatingAudio = document.getElementById("eating");
@@ -17,6 +17,11 @@ const movementAudio = document.getElementById("movement");
 const gameOverAudio = document.getElementById("gameOver");
 const scoreDisplay = document.getElementById("score");
 
+play.addEventListener("click", () => {
+    console.log("Game started");
+    play.style.display = "none";
+    document.getElementById('game-container').classList.add('game-started');
+});
 
 function drawPlayer() {
     context.fillStyle = "pink";
@@ -26,40 +31,33 @@ function drawPlayer() {
         context.fillRect(segment.x, segment.y, block, block);
         context.strokeRect(segment.x, segment.y, block, block);
     });
-    
+
 }
 
 function drawFood() {
     context.fillStyle = "red";
     context.fillRect(food.x, food.y, block, block);
-   
+
 }
 
 function generateFoodPosition() {
     let validPosition = false;
-    
-    
     while (!validPosition) {
-        let attempt = 0;
         const x = Math.floor(Math.random() * (gameScreen.width / block)) * block;
         const y = Math.floor(Math.random() * (gameScreen.height / block)) * block;
-        attempt ++
-        console.log("attempt " + attempt);
-        
+        //Check if the generated position is not occupied by the player
         if (!player.some(segment => segment.x === x && segment.y === y)) {
             food.x = x;
             food.y = y;
             validPosition = true;
-            attempt = 0;
         }
     }
 }
 
-
 function draw() {
     context.clearRect(0, 0, gameScreen.width, gameScreen.height);
     drawPlayer();
-    drawFood(); 
+    drawFood();
 }
 
 function playEatingAudio() {
@@ -79,13 +77,11 @@ function playGameOverAudio() {
 
 function movePlayer() {
     const head = { x: player[0].x + directionX, y: player[0].y + directionY };
-
     // Collision with own body
     if (player.some(segment => segment.x === head.x && segment.y === head.y)) {
         gameOver();
         return;
     }
-    
     // Collision with walls
     if (head.x < 0 || head.x >= gameScreen.width || head.y < 0 || head.y >= gameScreen.height) {
         gameOver();
@@ -93,8 +89,6 @@ function movePlayer() {
     }
     playMovementAudio();
     player.unshift(head);
-    
-
     // Collision with food
     if (head.x === food.x && head.y === food.y) {
         playEatingAudio();
@@ -108,10 +102,6 @@ function movePlayer() {
         player.pop();
     }
 }
-
-
-
-
 
 document.addEventListener("keydown", e => {
     if (e.key === "a" && directionX !== block) {
@@ -129,9 +119,6 @@ document.addEventListener("keydown", e => {
     }
 });
 
-
-
-
 function gameOver() {
     clearInterval(gameInterval);
     console.log("Game interval cleared");
@@ -140,39 +127,34 @@ function gameOver() {
         personalBestWorm = score;
         localStorage.setItem("personalBestWorm", personalBestWorm);
     }
-    
-
     document.querySelector(".personal-best").textContent = personalBestWorm;
     document.getElementById('gameOver').style.display = 'block';
     document.getElementById('reset').style.display = 'block';
 }
 
-
-
 play.addEventListener("click", () => {
     start();
     console.log("Game started");
     play.style.display = "none";
-});  
-
+});
 
 function start() {
-    draw();
+
     gameInterval = setInterval(() => {
         movePlayer();
         draw();
-         
     }, 1500 / speed);
     console.log(speed);
 }
 
 function updateSpeed(newSpeed) {
     speed = newSpeed;
-    clearInterval(gameInterval); 
-    start(); 
+    clearInterval(gameInterval);
+    start();
 }
 
 function updatePersonalBestDisplay() {
     document.querySelector(".personal-best").textContent = personalBestWorm;
 }
+
 updatePersonalBestDisplay();

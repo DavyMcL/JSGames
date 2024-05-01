@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worm</title>
+    <link rel="icon" href="assests/images/JS.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/worm.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
 
 <body>
-
     <audio id="movement" src="assests/audio/movement_sound.mp3"></audio>
     <audio id="eating" src="assests/audio/eating_sound.mp3"></audio>
     <audio id="gameOver" src="assests/audio/game-over.mp3"></audio>
@@ -18,13 +21,12 @@
         <a href="index.html"><i class="fas fa-home fa-2x"></i></a>
     </div>
     <div class="title">
-        <h1>JavaScript</h1>
+        <h1>Worm</h1>
         <p class="description">
-            Welcome to Snake! Control your serpent with the WASD keys. Collect food to grow longer and faster, but avoid
+            Welcome to Worm! Control your worm with the WASD keys. Collect food to grow longer and faster, but avoid
             colliding with the borders or yourself.
         </p>
     </div>
-
     <div class="game-wrapper">
         <div class="counter">
             <div class="score-counter">
@@ -43,16 +45,15 @@
             <button id="reset" onclick="window.location.reload()">RESET GAME</button>
         </div>
     </div>
-
     </div>
     <div class="games">
-        <div class="game">
+        <div class="game-select">
             <a href="matching_pairs.html">
-            <img src="https://via.placeholder.com/376x226" alt="Matching Pairs">
-            <h5>
-                Game
-            </h5>
-        </a>
+                <img src="assests/images/mathcing_pairs.png" alt="Matching Pairs">
+                <h5>
+                    Matching Pairs
+                </h5>
+            </a>
         </div>
     </div>
     <script src="js/worm.js" defer></script>
